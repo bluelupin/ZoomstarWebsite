@@ -18,7 +18,7 @@ return [
     'userSubject' =>
         'Confirmation mail for your Response'
     ,
-    'adminSubject' =>
+    'adminName' =>
         'Zoomstar Support'
     ,
     /*

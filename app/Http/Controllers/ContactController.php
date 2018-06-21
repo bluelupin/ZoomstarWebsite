@@ -33,22 +33,13 @@ class ContactController extends Controller
         }
         if($contact->save())
         {
-            try
-            {
-                $data = ['name'=>$contact->name , 'email'=>$contact->email, 'message' => $contact->message];
+              $data = ['name'=>$contact->name , 'email'=>$contact->email, 'message' => $contact->message];
                 \Mail::send('email.myMail',['data'=>$data], function ($smessage) use($contact)
                 {
-                $smessage->from(env('SUPPORT_FROM_EMAIL'),config('app.adminSubject'));
-                $smessage->to(env('SUPPORT_To_EMAIL'));
-                $smessage->bcc(($contact->email))->subject(config('app.userSubject'));
-                
+                    $smessage->from(env('SUPPORT_FROM_EMAIL'),config('app.adminName'))->to(env('SUPPORT_To_EMAIL'))->subject(config('app.userSubject'));
                 });
                 return response()->json("Your Response Is Submitted",200);
-            }
-            catch(Exception $e)
-            {
-              return response()->json("Your Response Is Submitted",200);
-            }
+            
         }
         
         return response()->json("Your Response Not Submitted",422);

@@ -2,7 +2,7 @@
     <div>
         <div class="alert" role="alert" v-show="show">
           <p class=" alert-success spacing"> {{ body }}</p> 
-         <figure class="image"><img src="/images/thumbsup.png" alt=""></figure>        
+         <figure class="image"><img src="/images/success-icon-10.png" alt=""></figure>        
         </div>
         <div v-show="!show">
             <form  v-on:submit.prevent="saveform()" id="contact-form" role="form">
