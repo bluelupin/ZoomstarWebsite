@@ -3771,3 +3771,13 @@ body.is-loading #sidebar nav ul li {
 	clear: both;
 	display: block;
 }
+
+.loader {
+	height: 40px;
+	width: 40px;
+	display: inline-block;
+}
+
+.loader img {
+	max-width: 100%;
+}

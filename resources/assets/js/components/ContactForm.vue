@@ -2,7 +2,7 @@
     <div>
         <div class="alert" role="alert" v-show="show">
           <p class=" alert-success spacing"> {{ body }}</p> 
-         <figure class="image"><img src="/images/success-icon-10.png" alt=""></figure>        
+         <figure class="image"><img src="/images/doneicon.png" alt=""></figure>        
         </div>
         <div v-show="!show">
             <form  v-on:submit.prevent="saveform()" id="contact-form" role="form">
@@ -24,8 +24,9 @@
                 <label for="message">Message</label>
                 <textarea placeholder="Enter Your Message(max. 200)" v-model="contact.msg" maxlength="200" rows="4" name="message"></textarea>
             </div>
-             <div class="form-group">
-                <button type="submit" class="theme-btn btn-style-two">Send Message <span class="icon ti-arrow-circle-right"></span></button>
+             <div class="form-group center">
+                <button type="submit" @click="loader" v-if="this.load == true" class="theme-btn btn-style-two">Send Message</button>
+                <span class="loader" v-if="this.load == false"><img src="/images/preloader.gif" alt=""></span>
             </div>
         </form> 
         </div>
@@ -47,6 +48,7 @@ export default {
         msg: ""
       },
       body: "",
+      load: true,
       result: "",
       show: false,
       nameError: "",
@@ -68,11 +70,15 @@ export default {
           this.nameError = this.error.name[0];
           this.emailError = this.error.email[0];
           this.showError = true;
+          this.load = true;
         });
     },
     flash(result) {
       this.show = true;
       this.body = result;
+    },
+    loader: function() {
+      this.load = false;
     }
   }
 };
